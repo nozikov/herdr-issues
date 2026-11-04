@@ -1,0 +1,6 @@
+# Written by Herdr into every mod folder
+gpui-kit.d.ts
+herdr.d.ts
+jsconfig.json
+.DS_Store
+.superpowers/
