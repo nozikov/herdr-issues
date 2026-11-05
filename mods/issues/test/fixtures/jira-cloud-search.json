@@ -1,0 +1,30 @@
+{
+  "issues": [
+    {
+      "id": "10001",
+      "key": "EXAMPLE-1",
+      "fields": {
+        "summary": "Login form rejects valid emails",
+        "description": { "version": 1, "type": "doc", "content": [
+          { "type": "paragraph", "content": [{ "type": "text", "text": "Plus signs are refused." }] }
+        ] },
+        "status": { "name": "In Progress" },
+        "assignee": { "displayName": "Ann Example" },
+        "labels": ["bug", "login"],
+        "updated": "2026-10-30T09:15:00.000+0000"
+      }
+    },
+    {
+      "id": "10002",
+      "key": "EXAMPLE-2",
+      "fields": {
+        "summary": "Add dark theme",
+        "description": null,
+        "status": { "name": "To Do" },
+        "assignee": null,
+        "labels": [],
+        "updated": "2026-10-28T14:00:00.000+0000"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"number": 123, "title": "Slow startup on large projects", "body": "Startup takes over ten seconds.\n\nSteps:\n1. Open a big project", "labels": [{"name": "performance", "color": "fbca04"}], "assignees": [{"login": "carol"}], "state": "OPEN", "url": "https://github.com/example/demo/issues/123", "updatedAt": "2026-11-02T09:45:00Z"}

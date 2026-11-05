@@ -1,0 +1,5 @@
+[
+  {"number": 42, "title": "Export button does nothing", "body": "Click it, nothing happens.", "labels": [{"name": "bug", "color": "d73a4a"}, {"name": "ui", "color": "0075ca"}], "assignees": [{"login": "alice"}, {"login": "bob"}], "state": "OPEN", "url": "https://github.com/example/demo/issues/42", "updatedAt": "2026-11-03T10:00:00Z"},
+  {"number": 17, "title": "Add dark theme", "body": "", "labels": [], "assignees": [], "state": "OPEN", "url": "https://github.com/example/demo/issues/17", "updatedAt": "2026-10-20T08:30:00Z"},
+  {"number": 99, "title": "Crash on empty input", "body": "Stack trace attached.", "labels": [{"name": "bug", "color": "d73a4a"}], "assignees": [{"login": "alice"}], "state": "CLOSED", "url": "https://github.com/example/demo/issues/99", "updatedAt": "2026-11-01T12:15:00Z"}
+]

@@ -5,6 +5,10 @@ A mod for the [Herdr](https://herdr.dev) desktop app: a side panel with the GitH
 The mod lives in `mods/issues/`, with a `RECIPE.md` (the brief to build it from
 scratch) and a `preview.png`.
 
+## Mods
+
+- **[Issues](RECIPE.md):** GitHub issues or Jira tasks for the current project in a side panel, and ▶ to start an agent on one, on its own branch and folder.
+
 ## Develop
 
 ```sh

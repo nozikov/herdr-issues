@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "type": "doc",
+  "content": [
+    { "type": "heading", "attrs": { "level": 2 }, "content": [{ "type": "text", "text": "Heading" }] },
+    { "type": "paragraph", "content": [
+      { "type": "text", "text": "Hello " },
+      { "type": "mention", "attrs": { "id": "user-1", "text": "@Ann" } },
+      { "type": "text", "text": " please see " },
+      { "type": "text", "text": "the docs", "marks": [{ "type": "link", "attrs": { "href": "https://docs.example.com/page" } }] },
+      { "type": "text", "text": "." }
+    ] },
+    { "type": "bulletList", "content": [
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "first" }] }] },
+      { "type": "listItem", "content": [{ "type": "paragraph", "content": [{ "type": "text", "text": "second" }] }] }
+    ] },
+    { "type": "codeBlock", "attrs": { "language": "js" }, "content": [{ "type": "text", "text": "const x = 1;" }] }
+  ]
+}

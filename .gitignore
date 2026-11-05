@@ -4,3 +4,4 @@ herdr.d.ts
 jsconfig.json
 .DS_Store
 .superpowers/
+.claude/worktrees/

@@ -1,0 +1,31 @@
+{
+  "startAt": 0,
+  "maxResults": 100,
+  "total": 2,
+  "issues": [
+    {
+      "id": "20001",
+      "key": "EXAMPLE-1",
+      "fields": {
+        "summary": "Report export times out",
+        "description": "h2. Steps\n* open the report\n* press *Export*\n{code}select 1{code}",
+        "status": { "name": "Open" },
+        "assignee": { "displayName": "Bob Example" },
+        "labels": ["export"],
+        "updated": "2026-10-31T08:00:00.000+0000"
+      }
+    },
+    {
+      "id": "20002",
+      "key": "EXAMPLE-2",
+      "fields": {
+        "summary": "Typo on the settings page",
+        "description": null,
+        "status": { "name": "Open" },
+        "assignee": null,
+        "labels": [],
+        "updated": "2026-10-29T10:30:00.000+0000"
+      }
+    }
+  ]
+}
