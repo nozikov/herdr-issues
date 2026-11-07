@@ -909,10 +909,13 @@ export default class Issues extends View {
 
   toggle(t) {
     const open = isPanelVisible(layout());
+    // Drawn like the tabs mod's Files and Changes buttons, so the row reads as one.
+    const color = open ? t.foreground : t.muted;
     return h_flex().size_full().items_center().justify_center().bg(t.chrome)
-      .child(div().id("issues-toggle").size(26).flex_none().flex().items_center().justify_center().rounded(6).cursor_pointer()
-        .hover((s) => s.bg(t.hover))
-        .on_mouse_down("left", stop).on_click(() => togglePanel()).child(svg(icon("issues")).size(15).text_color(open ? t.foreground : t.muted)));
+      .child(h_flex().id("issues-toggle").h(26).px(8).gap(5).flex_none().items_center().rounded(6).cursor_pointer()
+        .text_size(12).text_color(color).bg(open ? t.selected : t.chrome).hover((s) => s.bg(t.hover))
+        .on_mouse_down("left", stop).on_click(() => togglePanel())
+        .child(svg(icon("issues")).size(14).text_color(color)).child("Issues"));
   }
 
   render(cx) {
