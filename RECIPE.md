@@ -5,8 +5,13 @@ current space. ▶ starts an agent on a task, in a new tab of that space, on its
 own branch and folder. It only reads the tracker, and the token stays in your
 keychain.
 
+![Issues](preview.png)
+
 ## What you see
 
+- **Tab bar button:** the open-issue icon and `Issues`, drawn like the `tabs`
+  mod's Files and Changes buttons, highlighted while the panel is open. A click
+  shows or hides the panel.
 - **Header:** a `GitHub | Jira` switch, the repo or site name, refresh, the
   gear. The switch sets this project's source. Going back to Jira keeps the site
   and the home project.
@@ -80,18 +85,13 @@ keychain.
 Copy the mod into Herdr's home:
 
 ```sh
-git clone https://github.com/OWNER/herdr-issues.git
+git clone https://github.com/nozikov/herdr-issues.git
 cp -R herdr-issues/mods/issues ~/.config/herdr-app/mods/issues
 herdr-app check ~/.config/herdr-app/mods/issues
 ```
 
-A symlink works too, but only from a path with no hidden folder in it. Assets in
-a path under `.claude/`, for example, don't load through a symlink: the icons
-draw blank and `herdr-app status` shows no error.
-
-```sh
-ln -s "$PWD/mods/issues" ~/.config/herdr-app/mods/issues
-```
+Copy it, don't symlink it: Herdr loads no icons through a symlinked mod folder.
+They draw blank and `herdr-app status` shows no error.
 
 The shipped `main` layout is read-only, so clone it:
 
@@ -112,7 +112,7 @@ the size the `tabs` block had:
 ```json
 { "id": "tabs-row", "type": "row", "size": { "px": 42 }, "resizable": false, "children": [
   { "id": "tabs", "type": "block", "size": { "weight": 1 }, "window_drag": true, "content": { "mod": "tabs" } },
-  { "id": "issues-toggle", "type": "block", "size": { "px": 40 }, "window_drag": true,
+  { "id": "issues-toggle", "type": "block", "size": { "px": 80 }, "window_drag": true,
     "content": { "mod": "issues", "props": { "view": "toggle" } } } ] }
 ```
 
