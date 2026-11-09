@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero.png" width="100%" alt="Your issues. One click to an agent. The Issues panel with the repo's open GitHub issues, each with a start button, and the task window of the clicked issue with its description and a Start button">
+  <img src="assets/poster.png" width="100%" alt="Your issues. One click to an agent. The Issues panel with the repo's open GitHub issues, each with a start button, and the task window of the clicked issue with its description and a Start button">
 </p>
 
 <h1 align="center">Issues for Herdr</h1>
