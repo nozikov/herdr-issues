@@ -14,64 +14,89 @@
 </p>
 
 <p align="center">
-  <a href="#install">Install</a> · <a href="#the-panel">Panel</a> · <a href="#start-a-task">Start a task</a> · <a href="#connect-jira">Jira</a> · <a href="#what-it-runs">What it runs</a> · <a href="RECIPE.md">Recipe</a>
+  <a href="#install">Install</a> · <a href="#the-panel">Panel</a> · <a href="#read-a-task">Read a task</a> · <a href="#start-a-task">Start a task</a> · <a href="#connect-jira">Jira</a> · <a href="#what-it-runs">What it runs</a> · <a href="RECIPE.md">Recipe</a>
 </p>
 
 <br>
 
-A side panel in Herdr with the tasks for the project you're in:
+See the tasks for the project you're in, right beside your agents:
 
 - **GitHub issues** for the repo, with no setup: it uses your `gh` login.
 - **Jira tasks** from every project you work on, after you connect the site once.
 - **▶ starts an agent** on a task in a new tab, on its own branch and folder, with the task as its first message.
 
-It only reads the tracker. Your Jira token stays in the system keychain.
+It only reads the tracker, and your Jira token stays in the system keychain.
 
 ## The panel
 
-Click **Issues** in the tab bar. The panel shows the open tasks assigned to you, newest
-first. Switch to `Anyone` or `All`, or search. A key like `#128` or `DEMO-12` in the
-search box finds that task even if it isn't yours.
-
-- **GitHub or Jira:** the switch at the top picks the source for this project, and
-  the panel remembers it.
-- **Jira tasks** group by status. Pick a project in the dropdown to narrow them.
-- **A dot** on a row means the work has started.
-
 <p align="center">
-  <img src="assets/window.png" width="100%" alt="The task window: title, Start, status, assignee, updated, labels, the description with its formatting, comments, Open in browser and Copy branch name">
+  <img src="assets/panel.png" width="380" alt="The panel on Jira: a project dropdown, Assigned and All open filters, a search box, then tasks grouped by status, In Progress, In Review and To Do, each row with its title, key, a red High for urgent ones, how long ago it changed, and a start button">
 </p>
 
-Click a row to read the task: the description with its formatting, the comments,
-`Open in browser` and `Copy branch name`. Esc closes it.
+Click **Issues** in the tab bar. The panel shows the open tasks assigned to you, newest
+first.
+
+- **GitHub or Jira:** the switch at the top picks the source for this project, and the panel remembers it.
+- **Jira tasks** group by status, with a count. Click a status to fold it. The dropdown narrows them to one project.
+- **`High`** in red marks High, Highest, Critical and Blocker.
+- **A dot** before a title means the work has started.
+- **Search** by words, or type a key like `#128` or `DEMO-12` to find that task even if it isn't yours.
+
+## Read a task
+
+<p align="center">
+  <img src="assets/task.png" width="100%" alt="The task window for DEMO-41: title and Start, then status, priority, assignee, updated and labels, a description with headings, a bulleted list, inline code and a code block, two comments, and Open in browser and Copy branch name">
+</p>
+
+Click a row. The task opens over your work with its description as the tracker formats it:
+headings, lists, code. Below are the comments, `Open in browser` and `Copy branch name`.
+Start is right there, and Esc closes it.
 
 ## Start a task
+
+<p align="center">
+  <img src="assets/start.png" width="100%" alt="A new tab named DEMO-12, with the agent's folder ~/.herdr/worktrees/shop-api/DEMO-12-login-form-loses-the-email-after-a-wrong-p">
+</p>
 
 Press ▶ on a row, or Start in the task window:
 
 1. The branch `<key>-<title>` and the folder `~/.herdr/worktrees/<repo>/<branch>` are made with `git worktree`.
 2. Your setup command runs in the new folder, if you set one, like `npm ci`.
-3. Your agent starts in a new tab of the same space, with the task as its first message.
+3. Your agent starts in a new tab named after the task, with the task as its first message.
 
-The row gets a dot. Your current work stays as it is. ▶ on a task that already has a tab
-goes to that tab.
-**Remove folder** in the task window cleans up when you're done. It refuses while
-something is running there or while there are uncommitted changes, and it keeps the
-branch, so ▶ brings the work back.
+Your current work stays as it is. ▶ on a task that already has a tab goes to that tab.
+
+<p align="center">
+  <img src="assets/ask.png" width="380" alt="Under the WEB-7 row: Start WEB-7 in shop-api? with Start and Cancel">
+</p>
+
+A repo's own Jira project comes first, guessed once from branch names like
+`feature/DEMO-30-statement-totals`. A task from another project asks before it starts.
 
 ## Connect Jira
 
-Click the gear, type your Jira address and press **Connect**. A tab opens with the
-system's password prompt. Paste your token there, and it goes straight to the keychain.
+<p align="center">
+  <img src="assets/connect.png" width="380" alt="Connect Jira: one field for the Jira address, a line on where to create the token, a Connect button, and Already in the keychain">
+</p>
 
-- **Jira Cloud** (`*.atlassian.net`) also asks for your email. Create the token at
-  id.atlassian.com.
+Type your Jira address and press **Connect**. A tab opens with the system's password
+prompt: paste your token there, and it goes straight to the keychain. The mod never sees
+it typed.
+
 - **Jira Server or Data Center:** create a personal access token under Profile.
-- **Token already in the keychain?** Give the name of that keychain item instead.
+- **Jira Cloud** (`*.atlassian.net`) also asks for your email. Create the token at id.atlassian.com.
+- **Token already in the keychain?** Click **Already in the keychain** and give the item's name.
 
-The panel lists your open tasks from every project. A repo's own project comes first,
-guessed from branch names like `feature/DEMO-12-fix-login`. Starting a task from
-another project asks first.
+The gear opens the rest: the agent, the setup command, the first message, the home
+project and the question before other projects.
+
+## It plays safe
+
+- **Read only.** Nothing is written to GitHub or Jira.
+- **Tracker text is untrusted.** The first message marks it as written by anyone, images in it aren't loaded, and links open only on a click.
+- **No task text reaches a shell,** a URL or a Jira query. Branch names are built from letters and digits only.
+- **Remove folder asks first** and refuses while a terminal is open there or while there are uncommitted changes. It names the ignored files that would go, like `.env`, and keeps the branch, so ▶ brings the work back.
+- **A failed refresh keeps the list** and says so. Nothing is fetched while the panel is hidden.
 
 ## Install
 
@@ -107,12 +132,11 @@ And replace the `tabs` block with this row, which adds the **Issues** button:
 
 ## What it runs
 
-- `gh`, to read issues with your own login. It writes nothing to GitHub.
+- `gh`, to read issues with your own login.
 - `git`, to read the repo and its branches, and to add and remove worktrees. It never deletes a branch.
 - Jira's REST API, GET only, on the sites you connect, over HTTPS.
 - `security` on macOS or `secret-tool` on Linux, to read the token. It stays in memory, never in a file, a log or a command line.
 - Your setup command, if you set one, and your agent, as Herdr knows it. The mod adds no flags and turns off no approvals.
-- No task text reaches a shell, a URL or a Jira query.
 
 > [!NOTE]
 > Jira Server and Data Center are checked on a real site. Jira Cloud is built to its API but not yet checked on a real site.
@@ -133,7 +157,8 @@ layouts away and back (`herdr-app do layout.switch '{"name":"main"}'`, then your
 
 ## Credits
 
-Screenshots are the real mod in a demo window, on this repository's own issues.
+Screenshots are the real mod in a demo window: this repository's own issues, and a
+sample Jira site with made-up tasks.
 The icons follow [Lucide](https://lucide.dev) (ISC).
 
 ## License
