@@ -1,11 +1,10 @@
-# Issues
+# Issue to agent
 
-A side panel with your GitHub issues or Jira tasks for the project in the
-current space. ▶ starts an agent on a task, in a new tab of that space, on its
-own branch and folder. It only reads the tracker, and the token stays in your
-keychain.
+Your GitHub issues and Jira tasks in a side panel. ▶ on one starts an agent on
+it in a new tab, on its own branch and git worktree, with the task as its first
+message. It only reads the tracker, and the token stays in your keychain.
 
-![Issues](preview.png)
+![Issue to agent](preview.png)
 
 ## What you see
 
@@ -80,81 +79,57 @@ keychain.
   message, home project, the question, and Jira sites. An agent is started as
   `knownAgents()` lists it: the mod adds no flag and turns no approval off.
 
-## Install
-
-Copy the mod into Herdr's home:
-
-```sh
-git clone https://github.com/nozikov/herdr-issues.git
-cp -R herdr-issues/mods/issues ~/.config/herdr-app/mods/issues
-herdr-app check ~/.config/herdr-app/mods/issues
-```
-
-Copy it, don't symlink it: Herdr loads no icons through a symlinked mod folder.
-They draw blank and `herdr-app status` shows no error.
-
-The shipped `main` layout is read-only, so clone it:
-
-```sh
-herdr-app do layout.clone '{"name":"main","as":"my-main"}'
-```
-
-In `~/.config/herdr-app/layouts/my-main.json`, add the panel to the `panel-body`
-stack:
-
-```json
-{ "id": "issues", "type": "block", "content": { "mod": "issues" } }
-```
-
-Then put the `tabs` block in a row with the button that opens the panel, keeping
-the size the `tabs` block had:
-
-```json
-{ "id": "tabs-row", "type": "row", "size": { "px": 42 }, "resizable": false, "children": [
-  { "id": "tabs", "type": "block", "size": { "weight": 1 }, "window_drag": true, "content": { "mod": "tabs" } },
-  { "id": "issues-toggle", "type": "block", "size": { "px": 80 }, "window_drag": true,
-    "content": { "mod": "issues", "props": { "view": "toggle" } } } ] }
-```
-
-There is no other step. The `tabs` mod closes a panel it doesn't know on spaces
-where it wasn't opened, so the button adds `"issues"` to the shared value
-`"workspace.panels"` when it first shows.
-
-### Keychain
-
-`Connect` does this for you. By hand, the item for `jira.example.com` is
-`herdr-issues-jira-jira.example.com`.
-
-macOS:
-
-```sh
-security add-generic-password -U -a herdr-issues -s herdr-issues-jira-jira.example.com -w
-```
-
-Linux, with `secret-tool` from libsecret:
-
-```sh
-secret-tool store --label="Herdr Issues Jira" service herdr-issues-jira-jira.example.com
-```
-
-Create the token at id.atlassian.com for Cloud, or under Profile → Personal
-Access Tokens for Server/Data Center.
-
 ## Built from
 
-`mods/issues/`:
+- Layout: clone `main` (`herdr-app do layout.clone '{"name":"main","as":"my-main"}'`),
+  add the panel to the `panel-body` stack:
 
-- `main.js`: the only file using `gpui-kit` and `herdr`. Three copies by
-  `props().view`: the panel, `toggle` and `task`, the task window.
-- `sources/github.js`, `sources/jira.js`: one shape,
-  `{ id, list(filters), get(key), comments(key) }`.
-- `lib/`: pure and tested with `node --test`. `markup.js` turns ADF and wiki
-  markup into safe Markdown, `bus.js` is the panel and window channel, `start.js`
-  and `worktree.js` are ▶ and Remove folder.
+  ```json
+  { "id": "issues", "type": "block", "content": { "mod": "issues" } }
+  ```
 
-The task window holds no source and reads no settings. The panel loads the
-comments and hands them over in memory. Start and Remove folder come back as a
-signal with no tracker text in it, and the panel checks them again.
+  and put the `tabs` block in a row with the button, keeping the size the `tabs`
+  block had:
+
+  ```json
+  { "id": "tabs-row", "type": "row", "size": { "px": 42 }, "resizable": false, "children": [
+    { "id": "tabs", "type": "block", "size": { "weight": 1 }, "window_drag": true, "content": { "mod": "tabs" } },
+    { "id": "issues-toggle", "type": "block", "size": { "px": 80 }, "window_drag": true,
+      "content": { "mod": "issues", "props": { "view": "toggle" } } } ] }
+  ```
+
+  There is no other step. The `tabs` mod closes a panel it doesn't know on spaces
+  where it wasn't opened, so the button adds `"issues"` to the shared value
+  `"workspace.panels"` when it first shows.
+- `mods/issues/`:
+  - `main.js`: the only file using `gpui-kit` and `herdr`. Three copies by
+    `props().view`: the panel, `toggle` and `task`, the task window.
+  - `sources/github.js`, `sources/jira.js`: one shape,
+    `{ id, list(filters), get(key), comments(key) }`.
+  - `lib/`: pure and tested with `node --test`. `markup.js` turns ADF and wiki
+    markup into safe Markdown, `bus.js` is the panel and window channel, `start.js`
+    and `worktree.js` are ▶ and Remove folder.
+
+  The task window holds no source and reads no settings. The panel loads the
+  comments and hands them over in memory. Start and Remove folder come back as a
+  signal with no tracker text in it, and the panel checks them again.
+- Keychain: `Connect` writes the item. By hand, the item for `jira.example.com`
+  is `herdr-issues-jira-jira.example.com`.
+
+  macOS:
+
+  ```sh
+  security add-generic-password -U -a herdr-issues -s herdr-issues-jira-jira.example.com -w
+  ```
+
+  Linux, with `secret-tool` from libsecret:
+
+  ```sh
+  secret-tool store --label="Herdr Issues Jira" service herdr-issues-jira-jira.example.com
+  ```
+
+  Create the token at id.atlassian.com for Cloud, or under Profile → Personal
+  Access Tokens for Server/Data Center.
 
 ## What it runs and reads
 
@@ -180,8 +155,10 @@ signal with no tracker text in it, and the panel checks them again.
 - No task text reaches a shell, a URL or a JQL query. Only keys that look like
   project keys go into JQL.
 
-## Limits
+## Watch out
 
+- Copy the mod, don't symlink it: Herdr loads no icons through a symlinked mod
+  folder. They draw blank and `herdr-app status` shows no error.
 - The setup command runs on core's plain PATH, with no nvm or similar. Use full
   paths, or load the tool in the command:
   `. ~/.nvm/nvm.sh && npm ci`.
