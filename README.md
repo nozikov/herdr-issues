@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero.png" width="100%" alt="Herdr with the Issues panel open: the repo's open GitHub issues, each with a start button, and beside them an agent already working on issue #4 in its own folder">
+  <img src="assets/hero.png" width="100%" alt="Your issues. One click to an agent. The Issues panel with the repo's open GitHub issues, each with a start button, and the task window of the clicked issue with its description and a Start button">
 </p>
 
 <h1 align="center">Issues for Herdr</h1>
@@ -53,9 +53,8 @@ Press ▶ on a row, or Start in the task window:
 2. Your setup command runs in the new folder, if you set one, like `npm ci`.
 3. Your agent starts in a new tab of the same space, with the task as its first message.
 
-The picture at the top is that moment: the agent works on #4 in its own folder, and the
-row has a dot. Your current work stays as it is. ▶ on a task that already has a tab goes
-to that tab.
+The row gets a dot. Your current work stays as it is. ▶ on a task that already has a tab
+goes to that tab.
 **Remove folder** in the task window cleans up when you're done. It refuses while
 something is running there or while there are uncommitted changes, and it keeps the
 branch, so ▶ brings the work back.
