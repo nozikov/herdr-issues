@@ -5,3 +5,4 @@ jsconfig.json
 .DS_Store
 .superpowers/
 .claude/worktrees/
+docs/
