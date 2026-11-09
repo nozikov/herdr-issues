@@ -68,7 +68,7 @@ export function removeSite(settings, name) {
   return { settings: { ...settings, sites: settings.sites.filter((s) => s.name !== name), projects } };
 }
 
-export const KEY_SHAPE = "A project key looks like PAY";
+export const KEY_SHAPE = "A project key looks like DEMO";
 
 const NO_ENTRY = { source: "", site: "", ...NO_HOME, agent: "", setupCommand: "" };
 

@@ -244,7 +244,7 @@ test("a GitHub repo's Advanced has no home project to decide", () => {
 
 test("Advanced refuses a home project that isn't a key", () => {
   for (const home of ["no way", "security find-generic-password -s x -w", 'PAY" OR 1=1']) {
-    assert.deepEqual(saveExtras(empty, "/a", { agent: "", setupCommand: "", home, site: "jira.test" }), { problem: "A project key looks like PAY" });
+    assert.deepEqual(saveExtras(empty, "/a", { agent: "", setupCommand: "", home, site: "jira.test" }), { problem: "A project key looks like DEMO" });
   }
 });
 

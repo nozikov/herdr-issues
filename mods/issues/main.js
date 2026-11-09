@@ -64,7 +64,7 @@ export default class Issues extends View {
     this.removing = null;
     this.clearRows();
 
-    this.search = InputState.new({ placeholder: "Search, or #123 / PAY-431" });
+    this.search = InputState.new({ placeholder: "Search, or #123 / DEMO-12" });
     this.search.on("change", (_e, cx) => this.typed(cx));
     this.fields = {
       template: TextareaState.new({ rows: 7 }),
@@ -72,7 +72,7 @@ export default class Issues extends View {
       siteEmail: InputState.new({ placeholder: "you@example.com" }),
       siteToken: InputState.new({ placeholder: "Filled in for you" }),
       keychainItem: InputState.new({ placeholder: "herdr-issues-jira" }),
-      home: InputState.new({ placeholder: "PAY" }),
+      home: InputState.new({ placeholder: "DEMO" }),
       setupCommand: InputState.new({ placeholder: "npm ci" }),
     };
     this.fields.siteUrl.on("change", (_e, cx) => cx.notify()); // the address decides what else to ask
@@ -779,7 +779,7 @@ export default class Issues extends View {
         this.field("Setup command", this.input(this.fields.setupCommand, t), t, "Runs with sh -c in each new folder before the agent starts. $1 is the branch, $2 the folder."),
       ] : []),
       this.field("First message", area, t, "{key}, {title}, {url} and {body} are filled in from the task."),
-      ...(this.context?.site ? [this.field("Home project", this.input(this.fields.home, t), t, "This repo's Jira project, like PAY. Its tasks come first and start without a question. May be empty.")] : []),
+      ...(this.context?.site ? [this.field("Home project", this.input(this.fields.home, t), t, "This repo's Jira project, like DEMO. Its tasks come first and start without a question. May be empty.")] : []),
       this.checkbox("ask-other", "Ask before starting another project's task", this.askOther, t, (_e, cx) => { this.askOther = !this.askOther; cx.notify(); }),
       h_flex().child(this.primary("save-advanced", "Save", t, (_e, cx) => this.saveAdvancedForm(cx))));
   }
