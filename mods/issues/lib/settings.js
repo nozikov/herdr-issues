@@ -1,6 +1,6 @@
 // Settings kept in localStorage. They hold no secrets: only the command that prints a token.
 // Pure: no Node APIs, the Herdr runtime has none.
-import { DEFAULT_TEMPLATE } from "./prompt.js";
+import { currentTemplate } from "./prompt.js";
 import { isProjectKey } from "./jql.js";
 
 const KEY = "issues.settings";
@@ -45,7 +45,7 @@ function clean(raw) {
   }
   return {
     defaultAgent: typeof r.defaultAgent === "string" && r.defaultAgent ? r.defaultAgent : null,
-    template: typeof r.template === "string" ? r.template : DEFAULT_TEMPLATE,
+    template: currentTemplate(r.template),
     askOtherProject: r.askOtherProject !== false,
     sites: Array.isArray(r.sites) ? r.sites.map(cleanSite).filter(Boolean) : [],
     projects,

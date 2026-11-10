@@ -62,8 +62,12 @@ message. It only reads the tracker, and the token stays in your keychain.
   folder is new, and starts the agent in a new tab with the task as its first
   message. The row shows the steps and any failure.
 - **The first message** is a template with `{key}`, `{title}`, `{url}` and
-  `{body}`. The body is plain text, cut at 8000 characters, and marked as coming
-  from the tracker. Comments aren't sent.
+  `{body}`. The default asks the agent to read the whole task in the tracker
+  with its own tools: comments, attachments, epic or parent, linked tasks
+  (`gh issue view --comments` for GitHub). The mod doesn't gather them. The
+  body below is the fallback: plain text, cut at 8000 characters, and marked as
+  coming from the tracker. A template saved as an earlier default gets the
+  current one; a template you wrote stays.
 - **Remove folder** asks first, and refuses while a terminal is in the folder or
   while it has uncommitted changes. There is no force option. The branch stays,
   so ▶ brings the work back later. Ignored files go with the folder, so the

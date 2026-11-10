@@ -1,6 +1,6 @@
 // The settings form's text and choices, turned into settings. Each save returns { settings } or
 // { problem } in words. Pure: no Node APIs, the Herdr runtime has none.
-import { DEFAULT_TEMPLATE } from "./prompt.js";
+import { currentTemplate } from "./prompt.js";
 import { parseArgv } from "./settings.js";
 import { isProjectKey } from "./jql.js";
 import { validateSite } from "../sources/jira.js";
@@ -12,7 +12,7 @@ export function tokenCommandText(argv) {
 }
 
 export function saveGlobal(settings, { defaultAgent, template, askOtherProject }) {
-  return { settings: { ...settings, defaultAgent: defaultAgent || null, template: template.trim() ? template : DEFAULT_TEMPLATE, askOtherProject: askOtherProject !== false } };
+  return { settings: { ...settings, defaultAgent: defaultAgent || null, template: currentTemplate(template), askOtherProject: askOtherProject !== false } };
 }
 
 // A site from its address: `previous` is the name of the site being edited, "" for a new one. An

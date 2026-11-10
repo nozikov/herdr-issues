@@ -64,6 +64,11 @@ Press ▶ on a row, or Start in the task window:
 2. Your setup command runs in the new folder, if you set one, like `npm ci`.
 3. Your agent starts in a new tab named after the task, with the task as its first message.
 
+The first message has the key, the link and the description, and asks the agent to read
+the rest in the tracker itself: comments, attachments, the epic and linked tasks. For
+GitHub it does that with `gh`. For Jira it needs its own way in, like a Jira MCP server;
+without one it works from the description. Change the message under the gear.
+
 Your current work stays as it is. ▶ on a task that already has a tab goes to that tab.
 
 <p align="center">
